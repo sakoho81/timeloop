@@ -20,7 +20,7 @@ class Timeloop():
         logger.setLevel(logging.INFO)
         self.logger = logger
 
-    def _add_job(self, func, interval, *args, **kwargs):
+    def add_job(self, func, interval, *args, **kwargs):
         j = Job(interval, func, *args, **kwargs)
         self.jobs.append(j)
 
@@ -48,7 +48,7 @@ class Timeloop():
 
     def job(self, interval):
         def decorator(f):
-            self._add_job(f, interval)
+            self.add_job(f, interval)
             return f
         return decorator
 
